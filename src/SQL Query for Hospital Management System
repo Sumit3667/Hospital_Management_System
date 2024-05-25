@@ -1,0 +1,42 @@
+mysql> CREATE database Hospital;
+Query OK, 1 row affected (0.17 sec)
+
+mysql> USE Hospital;
+Database changed
+mysql> CREATE TABLE Patients(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,age INT NOT NULL,gender VARCHAR(15) NOT NULL);
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> CREATE TABLE Doctors(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,gender VARCHAR(15) NOT NULL,specialization VARCHAR(255) NOT NULL);
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> CREATE TABLE Appointments(id INT AUTO_INCREMENT PRIMARY KEY,patient_id INT NOT NULL,doctor_id INT NOT NULL,appointment_date DATE NOT NULL,FOREIGN KEY(patient_id) REFERENCES Patients(id),FOREIGN KEY(doctor_id) REFERENCES Doctors(id));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> SHOW tables;
++--------------------+
+| Tables_in_hospital |
++--------------------+
+| appointments       |
+| doctors            |
+| patients           |
++--------------------+
+3 rows in set (0.04 sec)
+
+mysql> INSERT INTO Doctors(name,gender,specialization) VALUES ("Rohit Sharma","Male","Radiologist"),("Kiara Advani","Female","Gynecologist"),("Virat Kohli","Male","Physician"),("Alia Bhatt","Female","NeuroSurgeon"),("Shreyas Iyer","Male","Surgeon"),("Tara Sutaria","Female","Cardiologist"),("KL Rahul","Male","Oncologist"),("Rashmika Mandanna","Female","Psychiatrist");
+Query OK, 8 rows affected (0.15 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Doctors;
++----+-------------------+--------+----------------+
+| id | name              | gender | specialization |
++----+-------------------+--------+----------------+
+|  1 | Rohit Sharma      | Male   | Radiologist    |
+|  2 | Kiara Advani      | Female | Gynecologist   |
+|  3 | Virat Kohli       | Male   | Physician      |
+|  4 | Alia Bhatt        | Female | NeuroSurgeon   |
+|  5 | Shreyas Iyer      | Male   | Surgeon        |
+|  6 | Tara Sutaria      | Female | Cardiologist   |
+|  7 | KL Rahul          | Male   | Oncologist     |
+|  8 | Rashmika Mandanna | Female | Psychiatrist   |
++----+-------------------+--------+----------------+
+8 rows in set (0.00 sec)
